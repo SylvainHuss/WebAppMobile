@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello!</title>
+    </head>
+    <body>
+        <center>
+            Nom : <input type="text" id="idName" />
+            <button id="bthello">Say Hello</button>
+            <br>
+            <img id="idimg" src="momo.jpg" height="450" />
+            <br>
+            <button id="btcasser">Casser la tele.</button>
+            <br>
+        </center>
+        <span style="margin-left: 25%;">Formulaire :</span>
+        <table cellspacing="10" style="margin-left: 25%;">
+            <tr>
+                <th style="text-align:right;">
+                    Nom :
+                </th>
+                <th style="text-align:left;">
+                    <input type="text" id="fNom" />
+                </th>
+                <th style="text-align:left;">
+                    <span id="infonom"/>
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Prenom :
+                </th>
+                <th style="text-align:left;">
+                    <input type="text" id="fPrenom"/>
+                </th>
+                <th style="text-align:left;">
+                    <span id="infoprenom" />
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Age :
+                </th>
+                <th style="text-align:left;">
+                        <input type="number" id="fAge" />
+                </th>
+                <th style="text-align:left;">
+                    <span id="infoage" />
+                </th>                
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Sexe :
+                </th>
+                <th style="text-align:left;">
+                    <input type="radio" name="fSexe" id="Homme" />Homme
+                    <input type="radio" name="fSexe" id="Femme" />Femme
+                    <input type="radio" name="fSexe" id="NB" />Non binaire
+                </th>
+                <th style="text-align:left;">
+                    <span id="infosexe" />
+                </th>                
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Mot de passe :
+                </th>
+                <th style="text-align:left;">
+                    <input type="password" id="fMdp" />
+                </th>
+                <th style="text-align:left;">
+                    <span id="infomdp" />
+                </th>                
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Confirmer Mot de passe :
+                </th>
+                <th style="text-align:left;">
+                    <input type="password" id="fConfirm" />
+                </th>
+                <th style="text-align:left;">
+                    <span id="infoconfirm" />
+                </th>                
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    Pays :
+                </th>
+                <th style="text-align:left;">
+                    <select id="fPays">
+                        <option value="choisir">Choisir...</option>
+                        <option value="france">France</option>
+                        <option value="saab">Allemagne</option>
+                        <option value="opel">Espagne</option>
+                        <option value="audi">Italie</option>
+                    </select>
+                </th>
+                <th style="text-align:left;">
+                    <span id="infopays" />
+                </th>                
+            </tr>
+            <th/>
+            <tr>
+                <th/>
+                <th style="text-align:left;">
+                    <button id="btcasser">Valider</button>
+                </th>                
+            </tr>
+        </table>
+
+        <script src="script.js"></script>
+        <script src="formscript.js"></script>
+    </body>
+</html>
