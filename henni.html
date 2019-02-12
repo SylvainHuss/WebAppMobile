@@ -14,6 +14,7 @@
             <br>
         </center>
         <span style="margin-left: 25%;">Formulaire :</span>
+        <form>
         <table cellspacing="10" style="margin-left: 25%;">
             <tr>
                 <th style="text-align:right;">
@@ -91,9 +92,9 @@
                     <select id="fPays">
                         <option value="choisir">Choisir...</option>
                         <option value="france">France</option>
-                        <option value="saab">Allemagne</option>
-                        <option value="opel">Espagne</option>
-                        <option value="audi">Italie</option>
+                        <option value="allemagne">Allemagne</option>
+                        <option value="espagne">Espagne</option>
+                        <option value="italie">Italie</option>
                     </select>
                 </th>
                 <th style="text-align:left;">
@@ -104,12 +105,15 @@
             <tr>
                 <th/>
                 <th style="text-align:left;">
-                    <button id="btcasser">Valider</button>
-                </th>                
+                    <input type="button" value = "Valider" id="btvalide"/>
+                </th>      
+                <th style="text-align:left;">
+                        <input type="button" value = "Reset" id="btreset"/>
+                </th>            
             </tr>
         </table>
-
-        <script src="script.js"></script>
-        <script src="formscript.js"></script>
+    </form>
+        <!-- <script src="script.js"></script> -->
+        <script src="formscript2.js"></script>
     </body>
 </html>

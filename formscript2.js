@@ -34,14 +34,16 @@ function ageupdate(){
     if (age.value < 0 || age.value > 120){
         infoage.textContent = "L'age doit etre entre 0 et 120 ans";
     }
-    else { infoage.textContent = "";}
+    else {
+        if (age.length==0) infoage.textContent = "Veuillez renseigner l'age";
+        else infoage.textContent = "";
 }
 
 function sexeupdate(){
     if (!h.checked && !f.checked && !nb.checked){
-        infoage.textContent = "Veuillez renseigner votre sexe";
+        infosexe.textContent = "Veuillez renseigner votre sexe";
     }
-    else { infoage.textContent = "";}
+    else { infosexe.textContent = "";}
 }
 
 function mdpupdate(){
@@ -82,9 +84,8 @@ function paysupdate(){
 }
 
 function valider(){
-    console.log("ihdfjhsdjsodjh");
     nomupdate();
-    prenomudpate();
+    prenomupdate();
     ageupdate();
     sexeupdate();
     mdpupdate();
@@ -93,14 +94,22 @@ function valider(){
 }
 
 function reset(){
-    var nom = document.getElementById("fNom");
-    var infonom = document.getElementById("infonom");
-    nom.textContent = "";
+    nom.value = "";
     infonom.textContent = "";
-    var prenom = document.getElementById("fPrenom");
-    var infoprenom = document.getElementById("infoprenom");
-    var age = document.getElementById("fAge");
-    var infoage = document.getElementById("infoage");
+    prenom.value = "";
+    infoprenom.textContent = "";
+    age.value = "";
+    infoage.textContent = "";
+    h.checked = false;
+    f.checked = false;
+    nb.checked = false;
+    infosexe.textContent = "";
+    mdp.value = "";
+    infomdp.textContent = "";
+    confirm.value = "";
+    infoconfirm.textContent = "";
+    pays.value = "";
+    infopays.textContent = "";
 }
 
 document.addEventListener("DOMContentLoaded", function(event){

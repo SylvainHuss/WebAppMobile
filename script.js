@@ -27,7 +27,7 @@ function changerimg(){
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
-    console.log("le Dom est charge");
+    //console.log("le Dom est charge");
     //affiche();
 
     var but = document.getElementById("bthello");
