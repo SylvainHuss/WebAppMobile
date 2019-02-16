@@ -16,9 +16,14 @@ var infoconfirm = document.getElementById("infoconfirm");
 var pays = document.getElementById("fPays");
 var infopays = document.getElementById("infopays");
 
+var msgvalide = document.getElementById("msgvalide");
+
+var valide = true;
+
 function nomupdate(){
     if (nom.value.length < 3){
         infonom.textContent = "La longueur du nom doit etre d'au moins 3 caracteres";
+        valide=false;
     }
     else { infonom.textContent = "";}
 }
@@ -26,6 +31,7 @@ function nomupdate(){
 function prenomupdate(){
     if (prenom.value.length < 3){
         infoprenom.textContent = "La longueur du prenom doit etre d'au moins 3 caracteres";
+        valide=false;
     }
     else { infoprenom.textContent = "";}
 }
@@ -33,15 +39,21 @@ function prenomupdate(){
 function ageupdate(){
     if (age.value < 0 || age.value > 120){
         infoage.textContent = "L'age doit etre entre 0 et 120 ans";
+        valide=false;
     }
     else {
-        if (age.length==0) infoage.textContent = "Veuillez renseigner l'age";
+        if (age.value.length==0){
+            infoage.textContent = "Veuillez renseigner l'age";
+            valide=false;
+        }
         else infoage.textContent = "";
+    }
 }
 
 function sexeupdate(){
     if (!h.checked && !f.checked && !nb.checked){
         infosexe.textContent = "Veuillez renseigner votre sexe";
+        valide=false;
     }
     else { infosexe.textContent = "";}
 }
@@ -61,6 +73,7 @@ function mdpupdate(){
     }
     if (mdp.value.length < 6 || !isNumber || !isMin || !isMaj){
         infomdp.textContent = "Le mot de passe doit avoir au moins 6 caracteres, avec au moins une minuscule, une majuscule et un nombre";
+        valide=false;
     }
     else { infomdp.textContent = "";}
 }
@@ -72,25 +85,36 @@ function confirmupdate(){
     }
     if (!isSame || mdp.value.length != confirm.value.length){
         infoconfirm.textContent = "Le mot de passe n'est pas le meme";
+        valide=false;
     }
-    else { infoconfirm.textContent = "";}
+    else {
+        if (confirm.value.length == 0){
+            infoconfirm.textContent = "Veuillez reecrire le mot de passe";
+            valide=false;
+        }
+        else  infoconfirm.textContent = "";
+    }
 }
 
 function paysupdate(){
     if (pays.value == "choisir"){
         infopays.textContent = "Veuillez preciser votre pays";
+        valide=false;
     }
     else { infopays.textContent = "";}
 }
 
 function valider(){
-    nomupdate();
-    prenomupdate();
-    ageupdate();
-    sexeupdate();
-    mdpupdate();
-    confirmupdate();
-    paysupdate();
+    valide = true;
+    nomupdate(valide);
+    prenomupdate(valide);
+    ageupdate(valide);
+    sexeupdate(valide);
+    mdpupdate(valide);
+    confirmupdate(valide);
+    paysupdate(valide);
+    if (valide) msgvalide.textContent = "Pas de soucis";
+    else msgvalide.textContent = "Il y a des erreurs";
 }
 
 function reset(){
@@ -108,12 +132,12 @@ function reset(){
     infomdp.textContent = "";
     confirm.value = "";
     infoconfirm.textContent = "";
-    pays.value = "";
+    pays.value = "choisir";
     infopays.textContent = "";
+    msgvalide.textContent = "";
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
-    console.log("oui");
     nom.addEventListener("input",nomupdate);
     prenom.addEventListener("input",prenomupdate);
     age.addEventListener("input",ageupdate);

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="taskApp">
+    <head>
+        <title>Task</title>
+        <meta http-equiv="Content-Type" content = "test/html;charset=utf-8"/>
+    </head>
+    <body>
+        <div ng-controller="taskCtrl">
+            <h2>Tâche à ajouter : </h2>
+            <input type='texte' ng-model="newtask"/>
+            <button ng-click="addTask()">Ajouter</button>
+            <br><br>
+            <h2>Liste des tâches : </h2>
+            <ul style="list-style:square inside url('arrow.png');">
+            <span ng-bind-html="tasks"></span>
+            </ul>
+        </div>
+
+        <script src="angularjs.js"></script>
+        <script src="sanitize.js"></script>
+        <script>
+            var taskApp = angular.module('taskApp', ["ngSanitize"]);
+            taskApp.controller('taskCtrl', ['$scope', function($scope) {
+                $scope.load = function(){
+                    $scope.tasks = localStorage.getItem("tasks");
+                };
+
+                $scope.addTask = function(){
+                    $scope.tasks+="<li>"+ $scope.newtask + "</li>";
+                    localStorage.setItem("tasks", $scope.tasks);
+                    $scope.newtask="";
+                }
+                $scope.load();
+            }]);
+        </script>
+    </body>
+</html>
