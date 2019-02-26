@@ -7,29 +7,48 @@
     <body>
         <div ng-controller="taskCtrl">
             <h2>Tâche à ajouter : </h2>
-            <input type='texte' ng-model="newtask"/>
-            <button ng-click="addTask()">Ajouter</button>
+            <form ng-submit="addTask()">
+                <input type='texte' ng-model="newtask"/>
+                <input type='submit' value='Ajouter'/>
+            </form>
             <br><br>
             <h2>Liste des tâches : </h2>
-            <ul style="list-style:square inside url('arrow.png');">
-            <span ng-bind-html="tasks"></span>
-            </ul>
+            <div ng-repeat="ta in tasks track by $index">
+                    <span ng-bind="ta.name" ng-dblclick="delete($index)" onmouseover="" style="cursor: pointer;" ng-click="check($index)"
+                    ng-style="ta.done ? {'text-decoration': 'line-through'} : {'text-decoration': 'none'}">
+                    </span>
+                </div>
         </div>
 
         <script src="angularjs.js"></script>
-        <script src="sanitize.js"></script>
         <script>
-            var taskApp = angular.module('taskApp', ["ngSanitize"]);
+            var taskApp = angular.module('taskApp', []);
             taskApp.controller('taskCtrl', ['$scope', function($scope) {
                 $scope.load = function(){
-                    $scope.tasks = localStorage.getItem("tasks");
+                    $scope.tasks = localStorage.getItem("tasks") 
+                    ? JSON.parse(localStorage.getItem("tasks"))
+                    : [];
                 };
 
                 $scope.addTask = function(){
-                    $scope.tasks+="<li>"+ $scope.newtask + "</li>";
-                    localStorage.setItem("tasks", $scope.tasks);
+                    $scope.tasks.push({name : $scope.newtask, 
+                                        done : false});
+                    localStorage.setItem("tasks", JSON.stringify($scope.tasks));
                     $scope.newtask="";
                 }
+
+                $scope.check = function(index){
+                    $scope.tasks[index].done = !$scope.tasks[index].done;
+                    localStorage.setItem("tasks", JSON.stringify($scope.tasks));
+                    $scope.newtask="";
+                }
+
+                $scope.delete = function(index){
+                    $scope.tasks.splice(index, 1)
+                    localStorage.setItem("tasks", JSON.stringify($scope.tasks));
+                    $scope.newtask="";
+                }
+
                 $scope.load();
             }]);
         </script>
