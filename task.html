@@ -11,10 +11,11 @@
                 <input type='texte' ng-model="newtask"/>
                 <input type='submit' value='Ajouter'/>
             </form>
+            <button ng-click="delete()">Supprimer</button>
             <br><br>
             <h2>Liste des tâches : </h2>
             <div ng-repeat="ta in tasks track by $index">
-                    <span ng-bind="ta.name" ng-dblclick="delete($index)" onmouseover="" style="cursor: pointer;" ng-click="check($index)"
+                    <span ng-bind="ta.name" onmouseover="" style="cursor: pointer;" ng-click="check($index)"
                     ng-style="ta.done ? {'text-decoration': 'line-through'} : {'text-decoration': 'none'}">
                     </span>
                 </div>
@@ -43,10 +44,11 @@
                     $scope.newtask="";
                 }
 
-                $scope.delete = function(index){
-                    $scope.tasks.splice(index, 1)
+                $scope.delete = function(){
+                    for (var i=$scope.tasks.length-1; i>=0; i--){
+                        if ($scope.tasks[i].done) $scope.tasks.splice(i, 1)
+                    }
                     localStorage.setItem("tasks", JSON.stringify($scope.tasks));
-                    $scope.newtask="";
                 }
 
                 $scope.load();
